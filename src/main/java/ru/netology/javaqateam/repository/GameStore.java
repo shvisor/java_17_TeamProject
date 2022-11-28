@@ -1,4 +1,6 @@
-package ru.netology;
+package ru.netology.javaqateam.repository;
+
+import ru.netology.javaqateam.domain.Game;
 
 import java.util.ArrayList;
 import java.util.HashMap;

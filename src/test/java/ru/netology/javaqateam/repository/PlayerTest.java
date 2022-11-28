@@ -1,8 +1,9 @@
-package ru.netology;
+package ru.netology.javaqateam.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.javaqateam.domain.Game;
 
 public class PlayerTest {
 

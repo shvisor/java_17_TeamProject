@@ -1,4 +1,6 @@
-package ru.netology;
+package ru.netology.javaqateam.domain;
+
+import ru.netology.javaqateam.repository.GameStore;
 
 import java.util.Objects;
 
