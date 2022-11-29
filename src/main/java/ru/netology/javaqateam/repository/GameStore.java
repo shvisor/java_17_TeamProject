@@ -33,7 +33,7 @@ public class GameStore {
      */
     public boolean containsGame(Game game) {
         for (int i = 1; i < games.size(); i++) {
-            if (games.get(i - 1).equals(game)) {
+            if (games.get(i-1).equals(game)) {
                 return true;
             }
         }
@@ -74,7 +74,5 @@ public class GameStore {
      * Суммирует общее количество времени всех игроков, проведённого
      * за играми этого каталога
      */
-    public int getSumPlayedTime() {
-        return 0;
-    }
+    public int getSumPlayedTime() {return 0;}
 }
