@@ -39,11 +39,16 @@ public class Player {
      * если игра не была установлена, то надо выкидывать RuntimeException
      */
     public int play(Game game, int hours) {
-        game.getStore().addPlayTime(name, hours);
+        //game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            game.getStore().addPlayTime(name, hours);  // перенесли в разветвление что б не сообщать каталогу если игра не инстолированна
+            //playedTime.put(game, playedTime.get(game));
+            int value = playedTime.get(game) + hours;                 // Суммируем и
+            playedTime.put(game, value);                              //  возвращем в мапу
         } else {
-            playedTime.put(game, hours);
+            // playedTime.put(game, hours);
+            throw new NotFoundException(                                                          // отрабатываем если не была инстолированна
+                    "Game with name: " + "<" + game.getTitle() + ">" + " not installed.");
         }
         return playedTime.get(game);
     }
