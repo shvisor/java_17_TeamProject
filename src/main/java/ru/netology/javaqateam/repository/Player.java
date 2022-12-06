@@ -39,15 +39,12 @@ public class Player {
      * если игра не была установлена, то надо выкидывать RuntimeException
      */
     public int play(Game game, int hours) {
-        //game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            game.getStore().addPlayTime(name, hours);  // перенесли в разветвление что б не сообщать каталогу если игра не инстолированна
-            //playedTime.put(game, playedTime.get(game));
-            int value = playedTime.get(game) + hours;                 // Суммируем и
-            playedTime.put(game, value);                              //  возвращем в мапу
+            game.getStore().addPlayTime(name, hours); // перенесли в разветвление что б не сообщать каталогу если игра не инстолированна
+            int value = playedTime.get(game) + hours; // Суммируем и возвращем в мапу
+            playedTime.put(game, value);
         } else {
-            // playedTime.put(game, hours);
-            throw new NotFoundException(                                                          // отрабатываем если не была инстолированна
+            throw new NotFoundException( // отрабатываем если не была инстолированна
                     "Game with name: " + "<" + game.getTitle() + ">" + " not installed.");
         }
         return playedTime.get(game);
@@ -85,6 +82,5 @@ public class Player {
             }
         }
         return gameOfGenrePlayedMost;
-        //return null;
     }
 }

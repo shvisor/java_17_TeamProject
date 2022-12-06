@@ -22,23 +22,21 @@ public class PlayerTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void shouldInstallGame() {
-//        GameStore store = new GameStore();
-//        Game game1 = store.publishGame("Red Dead Redemption", "Action");
-//        Game game2 = store.publishGame("GTA V", "Adventure");
-//        Game game3 = store.publishGame("Red Dead Redemption", "Action");
-//
-//        Player player = new Player("Petya");
-//        player.installGame(game1);
-//        player.installGame(game2);
-//        player.installGame(game3);
-//
-//        Player expected =
-//        Player actual = player.play()
-//
-//        Assertions.assertArrayEquals(expected, actual);
-//    }
+    @Test
+    public void shouldSumTimePerGame() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Red Dead Redemption", "Action");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+        player.play(game, 3);
+        player.play(game, 5);
+
+        int expected = 12;
+        int actual = player.play(game, 4);
+
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
     public void shouldException() {
