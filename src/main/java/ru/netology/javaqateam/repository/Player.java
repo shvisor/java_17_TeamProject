@@ -27,7 +27,7 @@ public class Player {
      * добавление игры игроку
      * если игра уже была, никаких изменений происходить не должно
      */
-    public void installGame(Game game) {
+    public void installGame(Game game) { // проверил, все ок shouldInstallGame
         playedTime.put(game, 0);
     }
 
