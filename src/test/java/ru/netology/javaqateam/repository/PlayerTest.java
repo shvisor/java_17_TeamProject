@@ -1,7 +1,5 @@
 package ru.netology.javaqateam.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.javaqateam.domain.Game;
@@ -11,7 +9,7 @@ public class PlayerTest {
     @Test
     public void shouldSumGenreIfOneGame() {
         GameStore store = new GameStore();
-        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game = store.publishGame("Red Dead Redemption", "Action");
 
         Player player = new Player("Petya");
         player.installGame(game);
@@ -19,7 +17,27 @@ public class PlayerTest {
 
         int expected = 3;
         int actual = player.sumGenre(game.getGenre());
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSumGenreIfSeveralGame() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Red Dead Redemption", "Action");
+        Game game2 = store.publishGame("Assassins Creed", "Adventure");
+        Game game3 = store.publishGame("GTA V", "Action");
+
+        Player player = new Player("Petya");
+        player.installGame(game1);
+        player.play(game1, 3);
+        player.installGame(game2);
+        player.play(game2, 5);
+        player.installGame(game3);
+        player.play(game3, 4);
+
+        int expected = 7;
+        int actual = player.sumGenre("Action");
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
