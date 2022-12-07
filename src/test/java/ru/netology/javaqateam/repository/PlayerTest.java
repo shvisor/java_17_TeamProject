@@ -107,8 +107,35 @@ public class PlayerTest {
         player.installGame(game5);
         player.play(game5, 1);
 
-        int expected = 6;
-        int actual = player.sumGenre("Action");
+        Game expected = game3;
+        Game actual = player.mostPlayerByGenre("Action");
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGameMostPlayedWhenNotGenre() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Red Dead Redemption", "Action");
+        Game game2 = store.publishGame("Assassins Creed", "Adventure");
+        Game game3 = store.publishGame("GTA V", "Action");
+        Game game4 = store.publishGame("Far Cry V", "Simulator");
+        Game game5 = store.publishGame("Detroit: Become Human", "Adventure");
+
+        Player player = new Player("Petya");
+        player.installGame(game1);
+        player.play(game1, 3);
+        player.installGame(game2);
+        player.play(game2, 5);
+        player.installGame(game3);
+        player.play(game3, 6);
+        player.installGame(game4);
+        player.play(game4, 4);
+        player.installGame(game5);
+        player.play(game5, 1);
+
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("MMORPG");
 
         Assertions.assertEquals(expected, actual);
     }
