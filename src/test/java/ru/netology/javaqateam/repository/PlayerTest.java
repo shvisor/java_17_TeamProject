@@ -71,16 +71,17 @@ public class PlayerTest {
     @Test
     public void shouldInstallIfGameExist() {
         GameStore store = new GameStore();
-        Game game = store.publishGame("Red Dead Redemption", "Action");
+        Game game1 = store.publishGame("Red Dead Redemption", "Action");
+        Game game2 = store.publishGame("Red Dead Redemption", "Action");
 
         Player player = new Player("Petya");
-        player.installGame(game);
-        player.play(game, 3);
-        player.installGame(game);
-        player.play(game, 5);
+        player.installGame(game1);
+        player.play(game1, 3);
+        player.installGame(game2);
+        player.play(game2, 5);
 
         int expected = 3;
-        int actual = player.sumGenre(game.getGenre());
+        int actual = player.sumGenre(game1.getGenre());
 
         Assertions.assertEquals(expected, actual);
     }
