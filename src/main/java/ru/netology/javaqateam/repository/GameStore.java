@@ -73,8 +73,8 @@ public class GameStore {
      */
     public int getSumPlayedTime() {
         int sum = 0;
-        for (int hours : playedTime.values()) {
-            sum += hours;
+        for (int hours : playedTime.values()) { // перебираем все значения лежащие в списке
+            sum += hours;                       // суммируем время
         }
         return sum;
     }
