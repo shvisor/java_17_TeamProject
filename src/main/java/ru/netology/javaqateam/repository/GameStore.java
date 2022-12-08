@@ -2,10 +2,7 @@ package ru.netology.javaqateam.repository;
 
 import ru.netology.javaqateam.domain.Game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameStore {
     private List<Game> games = new ArrayList<>();
@@ -74,5 +71,11 @@ public class GameStore {
      * Суммирует общее количество времени всех игроков, проведённого
      * за играми этого каталога
      */
-    public int getSumPlayedTime() {return 0;}
+    public int getSumPlayedTime() {
+        int sum = 0;
+        for (int hours : playedTime.values()) {
+            sum += hours;
+        }
+        return sum;
+    }
 }
