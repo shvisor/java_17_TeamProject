@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.javaqateam.domain.Game;
 
-import org.mockito.Mockito;
+import ru.netology.javaqateam.domain.GameTwo;
+
 
 public class GameStoreTest {
 
@@ -60,9 +61,16 @@ public class GameStoreTest {
     }
 
     @Test
+    public void shouldNotContainsNullGameTest() {               // сравниваем на null
+
+        assertFalse(store.containsGame(null));
+    }
+
+
+    @Test
     public void shouldNotEqualsAnotherClassTest() {            // работа метода equals класса Game, несоответствие класса
 
-        Game game1 = Mockito.mock(Game.class);
+        GameTwo game1 = new GameTwo("Нетология Баттл Онлайн", "Аркады", null);
 
         assertFalse(game.equals(game1));
     }

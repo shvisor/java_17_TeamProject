@@ -91,7 +91,7 @@ public class PlayerTest {
         Game game2 = store.publishGame("Assassins Creed", "Adventure");
         Game game3 = store.publishGame("GTA V", "Action");
         Game game4 = store.publishGame("Far Cry V", "Simulator");
-        Game game5 = store.publishGame("Detroit: Become Human", "Adventure");
+        Game game5 = store.publishGame("Call of Duty", "Action");
 
         Player player = new Player("Petya");
         player.installGame(game1);
