@@ -27,8 +27,10 @@ public class Player {
      * добавление игры игроку
      * если игра уже была, никаких изменений происходить не должно
      */
-    public void installGame(Game game) {
-        playedTime.put(game, 0);
+    public void installGame(Game game) { // проверил, все ок shouldInstallGame
+        if (!playedTime.containsKey(game)) {
+            playedTime.put(game, 0);
+        }
     }
 
     /**
@@ -39,11 +41,13 @@ public class Player {
      * если игра не была установлена, то надо выкидывать RuntimeException
      */
     public int play(Game game, int hours) {
-        game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            game.getStore().addPlayTime(name, hours); // перенесли в разветвление что б не сообщать каталогу если игра не инстолированна
+            int value = playedTime.get(game) + hours; // Суммируем и возвращем в мапу
+            playedTime.put(game, value);
         } else {
-            playedTime.put(game, hours);
+            throw new NotFoundException( // отрабатываем если не была инстолированна
+                    "Game with name: " + "<" + game.getTitle() + ">" + " not installed.");
         }
         return playedTime.get(game);
     }
@@ -57,8 +61,6 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
             }
         }
         return sum;
@@ -69,6 +71,16 @@ public class Player {
      * Если в игры этого жанра не играли, возвращается null
      */
     public Game mostPlayerByGenre(String genre) {
-        return null;
+        int sum = 0;
+        Game gameOfGenrePlayedMost = null;            // если жанра нет вернем null
+        for (Game game : playedTime.keySet()) {       // перебираем по ключу все игры
+            if (game.getGenre().equals(genre)) {      // проверяем на жанр
+                if (playedTime.get(game) > sum) {     // ищем максимальное значение
+                    sum = playedTime.get(game);
+                    gameOfGenrePlayedMost = game;
+                }
+            }
+        }
+        return gameOfGenrePlayedMost;
     }
 }

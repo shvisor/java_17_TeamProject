@@ -134,5 +134,4 @@ public class GameStoreTest {
 
         Assertions.assertNull(store.getMostPlayer());
     }
-
 }
