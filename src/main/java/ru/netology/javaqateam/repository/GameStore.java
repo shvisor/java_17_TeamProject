@@ -2,10 +2,7 @@ package ru.netology.javaqateam.repository;
 
 import ru.netology.javaqateam.domain.Game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameStore {
     private List<Game> games = new ArrayList<>();
@@ -32,8 +29,8 @@ public class GameStore {
      * если игра есть и false иначе
      */
     public boolean containsGame(Game game) {
-        for (int i = 1; i < games.size(); i++) {
-            if (games.get(i - 1).equals(game)) {
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).equals(game)) {
                 return true;
             }
         }
@@ -47,7 +44,8 @@ public class GameStore {
      */
     public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
-            playedTime.put(playerName, playedTime.get(playerName));
+            int time = playedTime.get(playerName) + hours;
+            playedTime.put(playerName, time);
         } else {
             playedTime.put(playerName, hours);
         }
@@ -75,6 +73,10 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-        return 0;
+        int sum = 0;
+        for (int hours : playedTime.values()) { // перебираем все значения лежащие в списке
+            sum += hours;                       // суммируем время
+        }
+        return sum;
     }
 }
