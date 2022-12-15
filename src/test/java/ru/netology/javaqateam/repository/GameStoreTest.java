@@ -2,12 +2,10 @@ package ru.netology.javaqateam.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.javaqateam.domain.Game;
-
-import ru.netology.javaqateam.domain.GameTwo;
-
 
 public class GameStoreTest {
 
@@ -68,11 +66,12 @@ public class GameStoreTest {
 
 
     @Test
-    public void shouldNotEqualsAnotherClassTest() {            // работа метода equals класса Game, несоответствие класса
+    public void shouldNotEqualsAnotherClassTest() {            // работа метода equals класса Game
 
-        GameTwo game1 = new GameTwo("Нетология Баттл Онлайн", "Аркады", null);
+        EqualsVerifier.simple().forClass(Game.class)
+                .withPrefabValues(Game.class, new Game("Нетология Баттл Онлайн", "Аркады", null), new Game("Нетология ", "Баттл", null))
+                .verify();
 
-        assertFalse(game.equals(game1));
     }
 
     @Test
